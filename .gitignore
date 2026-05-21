@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+*.swp
+
+# Node / Worker
+worker/node_modules/
+worker/dist/
+worker/.wrangler/
+
+# iOS / Xcode
+ios/KinriMonitor.xcodeproj/xcuserdata/
+ios/KinriMonitor.xcodeproj/project.xcworkspace/xcuserdata/
+ios/*.xcworkspace/xcuserdata/
+ios/build/
+ios/DerivedData/
+ios/**/*.xcuserstate
+
+# Secrets
+.env
+.dev.vars

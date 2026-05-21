@@ -1,0 +1,7 @@
+name = "kinri-monitor-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "b68feb2d53904decb0787baedbfca02f"
