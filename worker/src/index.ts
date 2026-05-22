@@ -7,6 +7,13 @@ import {
   type SeriesKey,
   type RateSeries,
 } from './boj-api';
+import {
+  calcEqualPayment,
+  calcEqualPrincipal,
+  diagnoseDeviation,
+  simulateRateIncrease,
+  type LoanCondition,
+} from './calc';
 
 type Bindings = {
   CACHE: KVNamespace;
@@ -154,6 +161,51 @@ app.get('/api/rates/history', async (c) => {
       502,
     );
   }
+});
+
+/**
+ * POST /api/calc/repayment
+ * 返済額計算（元利均等・元金均等）
+ * Body: { principal: number, annualRate: number, termYears: number }
+ */
+app.post('/api/calc/repayment', async (c) => {
+  const body = await c.req.json<LoanCondition>();
+  if (!body.principal || !body.annualRate || !body.termYears) {
+    return c.json({ status: 'error', message: 'principal, annualRate, termYears are required' }, 400);
+  }
+  return c.json({
+    status: 'ok',
+    data: {
+      equalPayment: calcEqualPayment(body),
+      equalPrincipal: calcEqualPrincipal(body),
+    },
+  });
+});
+
+/**
+ * POST /api/calc/deviation
+ * 乖離診断
+ * Body: { userRate, marketRate, principal, termYears }
+ */
+app.post('/api/calc/deviation', async (c) => {
+  const body = await c.req.json<{ userRate: number; marketRate: number; principal: number; termYears: number }>();
+  return c.json({
+    status: 'ok',
+    data: diagnoseDeviation(body.userRate, body.marketRate, body.principal, body.termYears),
+  });
+});
+
+/**
+ * POST /api/calc/simulation
+ * 金利上昇シミュレーション
+ * Body: { principal, annualRate, termYears, increases?: number[] }
+ */
+app.post('/api/calc/simulation', async (c) => {
+  const body = await c.req.json<LoanCondition & { increases?: number[] }>();
+  return c.json({
+    status: 'ok',
+    data: simulateRateIncrease(body, body.increases),
+  });
 });
 
 /**
