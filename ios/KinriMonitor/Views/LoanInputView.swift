@@ -6,6 +6,8 @@ struct LoanInputView: View {
     @State private var deviation: DeviationResult?
     @State private var latestMarketRate: Double?
     @State private var isCalculating = false
+    @State private var showShareSheet = false
+    @State private var shareText = ""
 
     private var condition: LoanCondition {
         get { store.condition }
@@ -132,12 +134,30 @@ struct LoanInputView: View {
                     Text(d.comment)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+
+                    // 共有ボタン
+                    if let r = repayment {
+                        Button {
+                            shareText = ShareService.generateSummary(
+                                condition: store.condition,
+                                deviation: d,
+                                repayment: r
+                            )
+                            showShareSheet = true
+                        } label: {
+                            Label("比較サマリーを共有", systemImage: "square.and.arrow.up")
+                                .font(.subheadline)
+                        }
+                    }
                 } header: {
                     Text("市場平均との乖離診断")
                 }
             }
         }
         .navigationTitle("借入条件")
+        .sheet(isPresented: $showShareSheet) {
+            ShareSheet(text: shareText)
+        }
     }
 
     private func resultRow(_ label: String, value: Int) -> some View {

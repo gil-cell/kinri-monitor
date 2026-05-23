@@ -19,6 +19,9 @@
 		A1B2C3D40000000A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D50000000A /* SettingsView.swift */; };
 		A1B2C3D40000000B /* RateCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D50000000B /* RateCardView.swift */; };
 		A1B2C3D40000000C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D50000000C /* Assets.xcassets */; };
+		A1B2C3D40000000D /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D50000000D /* AlertManager.swift */; };
+		A1B2C3D40000000E /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D50000000E /* ShareService.swift */; };
+		A1B2C3D40000000F /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D50000000F /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		A1B2C3D50000000A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A1B2C3D50000000B /* RateCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCardView.swift; sourceTree = "<group>"; };
 		A1B2C3D50000000C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A1B2C3D50000000D /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		A1B2C3D50000000E /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
+		A1B2C3D50000000F /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		A1B2C3D600000001 /* KinriMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KinriMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,8 +87,10 @@
 		A1B2C3D800000004 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A1B2C3D50000000D /* AlertManager.swift */,
 				A1B2C3D500000005 /* APIClient.swift */,
 				A1B2C3D500000006 /* LoanStore.swift */,
+				A1B2C3D50000000E /* ShareService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -111,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				A1B2C3D50000000B /* RateCardView.swift */,
+				A1B2C3D50000000F /* ShareSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -197,6 +206,9 @@
 				A1B2C3D400000009 /* SimulationView.swift in Sources */,
 				A1B2C3D40000000A /* SettingsView.swift in Sources */,
 				A1B2C3D40000000B /* RateCardView.swift in Sources */,
+				A1B2C3D40000000D /* AlertManager.swift in Sources */,
+				A1B2C3D40000000E /* ShareService.swift in Sources */,
+				A1B2C3D40000000F /* ShareSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

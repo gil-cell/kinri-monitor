@@ -2,10 +2,50 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject private var store = LoanStore.shared
+    @ObservedObject private var alertManager = AlertManager.shared
     @State private var showDisclaimer = false
 
     var body: some View {
         List {
+            // アラート設定
+            Section {
+                Toggle("金利アラート", isOn: $alertManager.alertEnabled)
+                    .tint(.blue)
+                    .onChange(of: alertManager.alertEnabled) {
+                        if alertManager.alertEnabled {
+                            alertManager.requestPermission()
+                        }
+                    }
+
+                if alertManager.alertEnabled {
+                    HStack {
+                        Text("コールレート閾値")
+                        Spacer()
+                        TextField("", value: $alertManager.callRateThreshold, format: .number.precision(.fractionLength(1...2)))
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .frame(width: 60)
+                        Text("％")
+                            .foregroundStyle(.secondary)
+                    }
+                    HStack {
+                        Text("貸出金利閾値")
+                        Spacer()
+                        TextField("", value: $alertManager.lendingRateThreshold, format: .number.precision(.fractionLength(1...2)))
+                            .keyboardType(.decimalPad)
+                            .multilineTextAlignment(.trailing)
+                            .frame(width: 60)
+                        Text("％")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            } header: {
+                Text("アラート")
+            } footer: {
+                Text("アプリ起動時に最新金利をチェックし、閾値を超えた場合に通知します。")
+                    .font(.caption2)
+            }
+
             Section("アプリ情報") {
                 HStack {
                     Text("バージョン")
